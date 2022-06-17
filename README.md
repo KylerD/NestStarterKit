@@ -51,14 +51,51 @@ $ npm run test:cov
 ```
 
 ## Cheat Sheet & Patterns
-- The application code that runs the program is found in `main.ts`
-- Each example/pattern in this starter kit is defined as a module and imported into `app.module.ts` - generally this is the pattern you should use for your own MVC vertical slices.
+* The application code that runs the program is found in `main.ts`
+* Each example/pattern in this starter kit is defined as a module and imported into `app.module.ts` - generally this is the pattern you should use for your own MVC vertical slices.
+  * The controllers layer handles HTTP requests and delegates tasks to the services layer.
+  * The services layer is where most of the business logic lives.
+  * Services use repositories / DAOs to change / persist entities.
+  * Entities act as containers for the values, with setters and getters.
 
+### Configuration
+A Nest config object is defined in `config/configuration.ts`, it can be injected into any classes constructor like so:
+```js
+import { ConfigService } from '@nestjs/config';
 
-### REST Example
-The rest example can be found under `/products`, it showcases:
+@Injectable()
+export class MyClass {
+  constructor(private configService: ConfigService) {
+    this.configService.get<string>("SOME_CONFIG_VAR");
+  }
+```
+### REST
+The rest example can be found under the `rest` folder, it uses an apples resource to showcase:
 - Basic CRUD
 - Request validation with [Class Validator](https://github.com/typestack/class-validator)
 - Automated Documentation with [Swagger](https://docs.nestjs.com/recipes/swagger)
 - IoC + Dependency Injection
-- Unit & E2E tests (`*.< controller | service >.spec.ts & `*.e2e-spec.ts` respectively)
+- Unit & E2E tests (`*.< controller | service >.spec.ts` & `*.e2e-spec.ts` respectively)
+
+### Mongo DB
+The mongo DB example can be found under the `mongo` folder, it uses a mangos resource to showcases:
+- Basic CRUD
+- IoC + Dependency Injection
+- Unit tests (`*.< controller | service >.spec.ts & `)
+- Configurable env vars
+
+It is not enabled by default, to try it out locally you need to import the mongoose module and mango resource into your `app.module.ts`, like this:
+```js
+    imports: [
+      MongooseModule.forRootAsync({
+        imports: [ConfigModule],
+        useFactory: async (configService: ConfigService) => ({
+          uri: configService.get<string>('DATABASE'),
+        }),
+        inject: [ConfigService],
+      }),
+      MangosModule
+    ]
+```
+
+Remember to change the `DATABASE` config variable defined in `config/configuration.ts`

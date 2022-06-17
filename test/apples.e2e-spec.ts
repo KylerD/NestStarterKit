@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
-import { ProductsModule } from './../src/products/products.module';
+import { ApplesModule } from '../src/rest/apples.module';
 
-describe('ProductController (e2e)', () => {
+describe('ApplesController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [ProductsModule],
+      imports: [ApplesModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -16,10 +16,10 @@ describe('ProductController (e2e)', () => {
     await app.init();
   });
 
-  describe('/products (POST)', () => {
+  describe('/apples (POST)', () => {
     it('should validate an empty body', () => {
       return request(app.getHttpServer())
-        .post('/products')
+        .post('/apples')
         .expect(400)
         .expect({
           "statusCode": 400,
