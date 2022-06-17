@@ -5,26 +5,18 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">A <a href="http://nestjs.com/" target="_blank">NEST.js</a> starter kit containing patterns for REST, Swagger Docs, Redis, Database Connections, Maps, Testing and an one-size-fits-all starting point for building efficient and scalable server-side applications.</p>
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest JS](https://docs.nestjs.com/) uses [Express.JS](https://expressjs.com/) under the hood by default. It supports [TypeScript](http://www.typescriptlang.org/) out of the box and comes with a ton of common best practices and tooling for building modern Javascript projects, including but not limited to:
+- [Inversion of Control](https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals)
+- [Open API](https://docs.nestjs.com/openapi/introduction)
+- [TCP Microservices](https://docs.nestjs.com/microservices/basics)
+- [GraphQL](https://docs.nestjs.com/graphql/quick-start)
+- [Web Sockets](https://docs.nestjs.com/websockets/gateways)
+
+I have integrated the services that I think are most likely to occur in a digital services project (REST API, Session Storage, Database Connections, GDS Front-end) etc. If you have any questions give me a shout on k.davidson@kainos.com
 
 ## Installation
 
@@ -58,16 +50,15 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Cheat Sheet & Patterns
+- The application code that runs the program is found in `main.ts`
+- Each example/pattern in this starter kit is defined as a module and imported into `app.module.ts` - generally this is the pattern you should use for your own MVC vertical slices.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+### REST Example
+The rest example can be found under `/products`, it showcases:
+- Basic CRUD
+- Request validation with [Class Validator](https://github.com/typestack/class-validator)
+- Automated Documentation with [Swagger](https://docs.nestjs.com/recipes/swagger)
+- IoC + Dependency Injection
+- Unit & E2E tests (`*.< controller | service >.spec.ts & `*.e2e-spec.ts` respectively)
