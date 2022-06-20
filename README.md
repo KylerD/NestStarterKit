@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A <a href="http://nestjs.com/" target="_blank">NEST.js</a> starter kit containing patterns for REST, Swagger Docs, Redis, Database Connections, Maps, Testing and an one-size-fits-all starting point for building efficient and scalable server-side applications.</p>
+  <p align="center">A <a href="http://nestjs.com/" target="_blank">NEST.js</a> API Starter Kit containing patterns for REST with automated Swagger Documentation, Dynamic Config, Various Database Options, Healthchecks and a one-size-fits-all starting point for building efficient and scalable server-side applications.</p>
 
 ## Description
 
@@ -16,7 +16,7 @@
 - [GraphQL](https://docs.nestjs.com/graphql/quick-start)
 - [Web Sockets](https://docs.nestjs.com/websockets/gateways)
 
-I have integrated the services that I think are most likely to occur in a digital services project (REST API, Session Storage, Database Connections, GDS Front-end) etc. If you have any questions give me a shout on k.davidson@kainos.com
+I have integrated the services that I think are most likely to occur in a digital services API. If you have any questions give me a shout on k.davidson@kainos.com
 
 ## Installation
 
@@ -57,6 +57,7 @@ $ npm run test:cov
   * The services layer is where most of the business logic lives.
   * Services use repositories / DAOs to change / persist entities.
   * Entities act as containers for the values, with setters and getters.
+* You can just delete any modules you're not using, i.e. pick one database option depending on your needs. I typically use Knex query builder.
 
 ### Configuration
 A Nest config object is defined in `config/configuration.ts`, it can be injected into any classes constructor like so:
@@ -69,6 +70,11 @@ export class MyClass {
     this.configService.get<string>("SOME_CONFIG_VAR");
   }
 ```
+
+### HealthChecks
+
+This API is setup with a healthcheck module already.
+
 ### REST
 The rest example can be found under the `rest` folder, it uses an apples resource to showcase:
 - Basic CRUD
@@ -76,6 +82,9 @@ The rest example can be found under the `rest` folder, it uses an apples resourc
 - Automated Documentation with [Swagger](https://docs.nestjs.com/recipes/swagger)
 - IoC + Dependency Injection
 - Unit & E2E tests (`*.< controller | service >.spec.ts` & `*.e2e-spec.ts` respectively)
+
+### Databases
+There are quite a number of options available to you in regards to how you connect to a DB, and which DB you use. Most of them are described [here](https://docs.nestjs.com/recipes). I've included my preferred relational (Knex with Postgres) and no-sql (Mongo) approaches as examples.
 
 ### Mongo DB
 The mongo DB example can be found under the `mongo` folder, it uses a mangos resource to showcases:
@@ -90,7 +99,7 @@ It is not enabled by default, to try it out locally you need to import the mongo
       MongooseModule.forRootAsync({
         imports: [ConfigModule],
         useFactory: async (configService: ConfigService) => ({
-          uri: configService.get<string>('DATABASE'),
+          uri: configService.get<string>('MONGO_CONNECTION_STRING'),
         }),
         inject: [ConfigService],
       }),
@@ -98,4 +107,4 @@ It is not enabled by default, to try it out locally you need to import the mongo
     ]
 ```
 
-Remember to change the `DATABASE` config variable defined in `config/configuration.ts`
+Remember to change the `MONGO_CONNECTION_STRING` config variable defined in `config/configuration.ts`
