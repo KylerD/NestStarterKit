@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
-import { ApplesModule } from '../src/rest/apples.module';
+import { ApplesModule } from '../src/apples/apples.module';
 
 describe('ApplesController (e2e)', () => {
   let app: INestApplication;
@@ -22,9 +22,13 @@ describe('ApplesController (e2e)', () => {
         .post('/apples')
         .expect(400)
         .expect({
-          "statusCode": 400,
-          "message": ["name should not be empty", "name must be a string", "price must be an integer number"],
-          "error": "Bad Request"
+          statusCode: 400,
+          message: [
+            'name should not be empty',
+            'name must be a string',
+            'price must be an integer number',
+          ],
+          error: 'Bad Request',
         });
     });
   });

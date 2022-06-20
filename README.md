@@ -108,3 +108,6 @@ It is not enabled by default, to try it out locally you need to import the mongo
 ```
 
 Remember to change the `MONGO_CONNECTION_STRING` config variable defined in `config/configuration.ts`
+
+
+Mention linting.
