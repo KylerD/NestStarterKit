@@ -19,4 +19,4 @@ import { createKnexConnection, KNEX_TOKEN } from './knex.utils';
   ],
   exports: [KNEX_TOKEN],
 })
-export class KnexModule {}
+export class KnexModule { }

@@ -1,7 +1,7 @@
 export interface Orange {
-  name: string;
+  orange_name: string;
 
-  price: number;
+  orange_price: number;
 
-  description: string;
+  orange_description: string;
 }

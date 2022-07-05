@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrangesService } from './oranges.service';
 import { OrangeDao } from './dao/orange.dao';
-import { KnexModule } from '../database-modules/knex/knex.module';
+import { KnexModule } from '../database-connectors/knex/knex.module';
 
 const mockOrange = {
   id: 1,
-  name: 'Orange #1',
-  price: 0,
-  description: 'Test Description',
+  orange_name: 'Orange #1',
+  orange_price: 0,
+  orange_description: 'Test Description',
 };
 
 describe('OrangesService', () => {
@@ -17,15 +17,15 @@ describe('OrangesService', () => {
   const orangesArray = [
     {
       id: 1,
-      name: 'Orange #1',
-      price: 0,
-      description: 'Test Description',
+      orange_name: 'Orange #1',
+      orange_price: 0,
+      orange_description: 'Test Description',
     },
     {
       id: 2,
-      name: 'Orange #2',
-      price: 0,
-      description: 'Test Description',
+      orange_name: 'Orange #2',
+      orange_price: 0,
+      orange_description: 'Test Description',
     },
   ];
 
@@ -56,9 +56,9 @@ describe('OrangesService', () => {
       jest.spyOn(dao, 'create').mockImplementationOnce(() =>
         Promise.resolve({
           id: 1,
-          name: 'Orange #1',
-          price: 0,
-          description: 'Test Description',
+          orange_name: 'Orange #1',
+          orange_price: 0,
+          orange_description: 'Test Description',
         }),
       );
       const newOrange = await service.create(mockOrange);

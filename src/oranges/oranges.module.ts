@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { KnexModule } from 'src/database-modules/knex/knex.module';
+import { KnexModule } from 'src/database-connectors/knex/knex.module';
 import { OrangeDao } from './dao/orange.dao';
 import { OrangesController } from './oranges.controller';
 import { OrangesService } from './oranges.service';

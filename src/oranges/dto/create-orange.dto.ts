@@ -1,5 +1,5 @@
 export class CreateOrangeDto {
-  readonly name: string;
-  readonly price: number;
-  readonly description: string;
+  readonly orange_name: string;
+  readonly orange_price: number;
+  readonly orange_description: string;
 }

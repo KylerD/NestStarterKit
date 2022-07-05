@@ -16,7 +16,7 @@
 - [GraphQL](https://docs.nestjs.com/graphql/quick-start)
 - [Web Sockets](https://docs.nestjs.com/websockets/gateways)
 
-I have integrated the services that I think are most likely to occur in a digital services API. If you have any questions give me a shout on k.davidson@kainos.com
+I have integrated the services that I think are most likely to occur in a digital services API. If you have any questions give me a shout on k.davidson@kainos.com . For more recipes check out the [Nest Docs](https://docs.nestjs.com/recipes)
 
 ## Installation
 
@@ -24,7 +24,9 @@ I have integrated the services that I think are most likely to occur in a digita
 $ npm install
 ```
 
-## Running the app
+## Running Locally
+
+The easiest way to run the application is with `docker-compose up`. This will setup your database connections for you. If you would prefer to run outside of docker you can just use the commands inside `package.json`:
 
 ```bash
 # development
@@ -36,6 +38,8 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+Note that without docker you will need to have your own databases setup with the `PG_CONNECTION_STRING` and `MONGO_CONNECTION_STRING` ENV vars set appropriately. Checkout my `postgres-init/init.sql` file for the basic setup.
 
 ## Test
 
@@ -50,14 +54,14 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Cheat Sheet & Patterns
+## Getting Started
 * The application code that runs the program is found in `main.ts`
 * Each example/pattern in this starter kit is defined as a module and imported into `app.module.ts` - generally this is the pattern you should use for your own MVC vertical slices.
   * The controllers layer handles HTTP requests and delegates tasks to the services layer.
   * The services layer is where most of the business logic lives.
   * Services use repositories / DAOs to change / persist entities.
   * Entities act as containers for the values, with setters and getters.
-* You can just delete any modules you're not using, i.e. pick one database option depending on your needs. I typically use Knex query builder.
+* You can just delete any modules you're not using, i.e. pick one database option depending on your needs. I have used Knex query builder with the most success.
 
 ### Configuration
 A Nest config object is defined in `config/configuration.ts`, it can be injected into any classes constructor like so:

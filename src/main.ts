@@ -14,13 +14,13 @@ async function bootstrap() {
    https://docs.nestjs.com/openapi/introduction */
   const config = new DocumentBuilder()
     .setTitle('REST Example')
-    .setDescription('The products API')
+    .setDescription('The fruit API')
     .setVersion('1.0')
-    .addTag('products')
+    .addTag('fruits')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/', app, document);
 
   // https://docs.nestjs.com/fundamentals/lifecycle-events#application-shutdown
   app.enableShutdownHooks();

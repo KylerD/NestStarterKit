@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  fruit-api:
+    container_name: fruits-api
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+      target: development
+    environment:
+     - PG_CONNECTION_STRING=postgres://postgres:postgres@postgres:5432/postgres
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    links:
+      - postgres
+  postgres:
+    container_name: postgres-db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - postgres:/var/lib/postgresql/data
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+  postgres:
+    driver: local
